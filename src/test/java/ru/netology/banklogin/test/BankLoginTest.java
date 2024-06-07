@@ -57,4 +57,19 @@ public class BankLoginTest {
         verificationPage.verifyErrorNotification("Ошибка! \nНеверно указан код! Попробуйте ещё раз.");
     }
 
+    @Test
+    @DisplayName("should block user if active user entered password incorrectly 3 times")
+    void shouldBlockUserIfActiveUserEnteredPasswordIncorrectlyThreeTimes(){
+        var authInfo = DataHelper.getAuthInfoWithLoginInBaseAndRandomPassword();
+        loginPage.invalidLogin(authInfo);
+        loginPage.verifyErrorNotification("Ошибка! \nНеверно указан логин или пароль");
+        loginPage.clearFields();
+        loginPage.invalidLogin(authInfo);
+        loginPage.verifyErrorNotification("Ошибка! \nНеверно указан логин или пароль");
+        loginPage.clearFields();
+        loginPage.invalidLogin(authInfo);
+        loginPage.verifyErrorNotification("Ошибка! \nВы ввели пароль неверно 3 раза. Вы заблокированы.");
+
+    }
+
 }

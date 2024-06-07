@@ -19,6 +19,10 @@ public class DataHelper {
         return new AuthInfo("vasya", "qwerty123");
     }
 
+    public static AuthInfo getAuthInfoWithLoginInBaseAndRandomPassword() {
+        return new AuthInfo("vasya", generateRandomPassword());
+    }
+
     public static AuthInfo getOtherAuthInfoWithTestData() {
         return new AuthInfo("petya", "123qwerty");
     }
