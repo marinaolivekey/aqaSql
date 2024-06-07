@@ -20,18 +20,17 @@ public class LoginPage {
         return new VerificationPage();
     }
 
-    public LoginPage invalidLogin(DataHelper.AuthInfo authInfo) {
+    public void invalidLogin(DataHelper.AuthInfo authInfo) {
         loginElement.setValue(authInfo.getLogin());
         passwordElement.setValue(authInfo.getPassword());
         loginButton.click();
-        return new LoginPage();
     }
 
-    public void verifyErrorNotification (String expectedText){
+    public void verifyErrorNotification(String expectedText) {
         errorNotification.shouldHave(Condition.exactText(expectedText)).shouldBe(Condition.visible);
     }
 
-    public void clearFields(){
+    public void clearFields() {
         loginElement.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
         passwordElement.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
     }

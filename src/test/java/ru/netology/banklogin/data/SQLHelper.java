@@ -11,16 +11,16 @@ import java.sql.SQLException;
 public class SQLHelper {
     private static final QueryRunner QUERY_RUNNER = new QueryRunner();
 
-    private SQLHelper(){
+    private SQLHelper() {
     }
 
-    private static Connection getConn() throws SQLException{
+    private static Connection getConn() throws SQLException {
         return DriverManager.getConnection(System.getProperty("db.url"), "app", "pass");
         // return DriverManager.getConnection(System.getProperty("app.url"), "app", "pass");
     }
 
     @SneakyThrows
-    public static String getVerificationCode(){
+    public static String getVerificationCode() {
         var codeSQL = "SELECT code FROM auth_codes ORDER BY created DESC LIMIT 1";
         var conn = getConn();
         return QUERY_RUNNER.query(conn, codeSQL, new ScalarHandler<>());
@@ -37,8 +37,8 @@ public class SQLHelper {
 
     @SneakyThrows
     public static void cleanAuthCodes() {
-      var connection = getConn();
-      QUERY_RUNNER.execute(connection, "DELETE FROM auth_codes");
+        var connection = getConn();
+        QUERY_RUNNER.execute(connection, "DELETE FROM auth_codes");
     }
 
 }

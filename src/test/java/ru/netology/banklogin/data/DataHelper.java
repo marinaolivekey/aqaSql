@@ -7,13 +7,12 @@ import lombok.NoArgsConstructor;
 import lombok.Value;
 
 import java.util.Locale;
-import java.util.Random;
 
 public class DataHelper {
-    private DataHelper(){
-    }
-
     private static final Faker FAKER = new Faker(new Locale("en"));
+
+    private DataHelper() {
+    }
 
     public static AuthInfo getAuthInfoWithTestData() {
         return new AuthInfo("vasya", "qwerty123");
@@ -27,24 +26,24 @@ public class DataHelper {
         return new AuthInfo("petya", "123qwerty");
     }
 
-    public static String generateRandomLogin(){
+    public static String generateRandomLogin() {
         return FAKER.name().username();
     }
 
-    public static String generateRandomPassword(){
+    public static String generateRandomPassword() {
         return FAKER.internet().password();
     }
 
-    public static AuthInfo generateRandomUser(){
+    public static AuthInfo generateRandomUser() {
         return new AuthInfo(generateRandomLogin(), generateRandomPassword());
     }
 
-    public static VerificationCode getFakeVerificationCode(){
+    public static VerificationCode getFakeVerificationCode() {
         return new VerificationCode(FAKER.numerify("######"));
     }
 
     @Value
-    public static class AuthInfo{
+    public static class AuthInfo {
         private String login;
         private String password;
     }

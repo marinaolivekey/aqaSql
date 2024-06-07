@@ -2,7 +2,6 @@ package ru.netology.banklogin.page;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import ru.netology.banklogin.data.DataHelper;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -15,17 +14,17 @@ public class VerificationPage {
         codeField.shouldBe(Condition.visible);
     }
 
-    public void verifyErrorNotification (String expectedText) {
+    public void verifyErrorNotification(String expectedText) {
         errorNotification.shouldHave(Condition.exactText(expectedText)).shouldBe(Condition.visible);
     }
 
 
-    public DashboardPage validVerify (String verificationCode) {
+    public DashboardPage validVerify(String verificationCode) {
         verify(verificationCode);
         return new DashboardPage();
     }
 
-    public void verify (String verificationCode) {
+    public void verify(String verificationCode) {
         codeField.setValue(verificationCode);
         verifyButton.click();
     }
